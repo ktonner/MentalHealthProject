@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import logo from './logo.svg';
 import './App.css';
+import Home from './Pages/Home'
 import Prescriptions from './Pages/Prescriptions'
 import {
 	BrowserRouter as Router,
@@ -9,26 +10,15 @@ import {
 	Redirect,
 	Switch
 } from 'react-router-dom';
+import { UserProvider } from "./utils/UserContext";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Mental Health Tracker
-        </p>
-        <a
-          className="App-link"
-          to='/enter'
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Get Started
-        </a>
-      </header>
-    </div>
-  );
+const App = () => {
+  <UserProvider>
+  <Router>
+    <Route exact path = '/' component={Home}/>
+    <Route exact path='/enter' component={Prescriptions}/>
+  </Router>
+  </UserProvider>
 }
 
 export default App;
