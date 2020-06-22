@@ -1,6 +1,7 @@
 import React from 'react';
 import Form from 'react-bootstrap/Form'
 import InputGroup from 'react-bootstrap/InputGroup'
+import Button from 'react-bootstrap/Button'
 
 
 function Input(){
@@ -17,6 +18,57 @@ function Input(){
       aria-describedby="basic-addon1"
     />
   </InputGroup>
+  <Form>
+  {['radio'].map((type) => (
+    <div key={`default-${type}`} className="mb-3">
+      <Form.Check 
+        type={type}
+        id={`default-${type}`}
+        label={`Every Day`}
+      />
+    </div>
+  ))}
+  {['checkbox'].map((type) => (
+    <div key={`default-${type}`} className="mb-3">
+      <Form.Check 
+        type={type}
+        id={`default-${type}`}
+        label={`Monday`}
+      />
+       <Form.Check 
+        type={type}
+        id={`default-${type}`}
+        label={`Tuesday`}
+      />
+      <Form.Check 
+        type={type}
+        id={`default-${type}`}
+        label={`Wednesday`}
+      />
+      <Form.Check 
+        type={type}
+        id={`default-${type}`}
+        label={`Thursday`}
+      />
+      <Form.Check 
+        type={type}
+        id={`default-${type}`}
+        label={`Friday`}
+      />
+      <Form.Check 
+        type={type}
+        id={`default-${type}`}
+        label={`Saturday`}
+      />
+      <Form.Check 
+        type={type}
+        id={`default-${type}`}
+        label={`Sunday`}
+      />
+    </div>
+  ))}
+</Form>
+  <Button>Add</Button>
   </div>
   )
 }

@@ -1,18 +1,16 @@
 import React from 'react';
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
-import Col from 'react-bootstrap/Col'
-import Table from 'react-bootstrap/Table'
-import Form from 'react-bootstrap/Form'
-import InputGroup from 'react-bootstrap/InputGroup'
+import Col from 'react-bootstrap/Col' 
 import Input from '../components/Input'
+import css from './Prescriptions.css'
 
 function Prescriptions () {
     return(
 
         <Container>
         <Row>
-            <Col>
+        <Col className="mx-auto">
         <Input/>
         </Col>
         </Row>
