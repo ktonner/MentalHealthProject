@@ -1,6 +1,9 @@
 th{
     background:#242f40;
     color: white;
-    padding: 5px;
-    margin: auto;
+    width: 200px
+}
+
+td{
+    height: 200px
 }

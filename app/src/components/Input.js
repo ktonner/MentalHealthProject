@@ -3,12 +3,14 @@ import Form from 'react-bootstrap/Form'
 import InputGroup from 'react-bootstrap/InputGroup'
 import Button from 'react-bootstrap/Button'
 import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col' 
 
 
 function Input(){
   return(
     <div>
  <h1>What prescriptions are you taking currently?</h1>
+ <Col>
         <InputGroup className="mb-3">
     <InputGroup.Prepend>
       <InputGroup.Text id="basic-addon1">Enter the Name of your Prescription</InputGroup.Text>
@@ -19,6 +21,8 @@ function Input(){
       aria-describedby="basic-addon1"
     />
   </InputGroup>
+  </Col>
+  <Col>
   <Form>
   {['radio'].map((type) => (
     <div key={`default-${type}`} className="mb-3">
@@ -29,7 +33,6 @@ function Input(){
       />
     </div>
   ))}
-  <Row>
   {['checkbox'].map((type) => (
     <div key={`default-${type}`} className="mb-3">
       <Form.Check 
@@ -69,8 +72,8 @@ function Input(){
       />
     </div>
   ))}
-  </Row>
 </Form>
+</Col>
   <Button>Add</Button>
   </div>
   )
