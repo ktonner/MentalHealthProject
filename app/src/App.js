@@ -12,13 +12,11 @@ import {
 } from 'react-router-dom';
 import { UserProvider } from "./utils/UserContext";
 
-const App = () => {
-  <UserProvider>
+const App = () => (
   <Router>
     <Route exact path = '/' component={Home}/>
     <Route exact path='/enter' component={Prescriptions}/>
   </Router>
-  </UserProvider>
-}
+)
 
 export default App;
