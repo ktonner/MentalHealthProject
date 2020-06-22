@@ -10,8 +10,7 @@ function Home(){
         </p>
         <a
           className="App-link"
-          to='/enter'
-          target="_blank"
+          href='/enter'
           rel="noopener noreferrer"
         >
           Get Started
