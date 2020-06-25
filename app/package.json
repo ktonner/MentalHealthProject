@@ -8,6 +8,8 @@
     "@testing-library/user-event": "^7.2.1",
     "bootstrap": "^4.5.0",
     "moment": "^2.27.0",
+    "nodemon": "^2.0.4",
+    "npm-watch": "^0.6.0",
     "react": "^16.13.1",
     "react-bootstrap": "^1.0.1",
     "react-dom": "^16.13.1",
@@ -15,13 +17,17 @@
     "react-scripts": "3.4.1"
   },
   "scripts": {
+    "watch": "node scripts/watch.js",
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": "react-app"
+  },
+  "watch": {
+    "test": "{src,test}/*.js"
   },
   "browserslist": {
     "production": [
