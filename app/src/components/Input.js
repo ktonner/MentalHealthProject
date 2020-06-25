@@ -6,14 +6,16 @@ import Row from 'react-bootstrap/Row'
 
 
 
-function Input(){
+class Input extends React.Component{
 
-  const handleAdd = () => {
+handleAdd = () => {
     var days = []
-    days.push(this.selectedCheckboxes)
+    var i
+    days = document.getElementById('default-checkbox')
     console.log(days)
   }
 
+  render(){
   return(
     <div>
  <h1>What prescriptions are you taking currently?</h1>
@@ -77,9 +79,10 @@ function Input(){
     </div>
   ))}
 </Form>
-  <Button onClick={handleAdd()}>Add</Button>
+  <Button onClick={this.handleAdd()}>Add</Button>
   </div>
   )
+    }
 }
 
 export default Input
