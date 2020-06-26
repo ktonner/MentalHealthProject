@@ -17,19 +17,28 @@ class Input extends React.Component {
     this.handleToggle = this.handleToggle.bind(this);
   }
 
-  handleAdd = () => {
-    var days = []
-    var i
+  createCheckboxes() {
+    const options = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
+    options.map((option) => {
+      return (
+        <Checkbox
+          label={option}
+          checked={this.state.checkboxChecked}
+          onChange={this.handleChange}
+          />
+    )
+    })
   }
+
 
   handleChange(evt) {
     this.setState({ checkboxChecked: evt.target.checked });
   }
-  
+
   handleIsItChecked() {
     console.log(this.state.checkboxChecked ? 'Yes' : 'No');
   }
-  
+
   handleToggle() {
     this.setState({ checkboxChecked: !this.state.checkboxChecked });
   }
@@ -49,11 +58,9 @@ class Input extends React.Component {
           />
         </InputGroup>
         <Form>
-          <Checkbox
-            checked={this.state.checkboxChecked}
-            onChange={this.handleChange} />
+          {this.createCheckboxes}
         </Form>
-        <Button onClick={this.handleAdd()}>Add</Button>
+        <Button>Add</Button>
       </div>
     )
   }
