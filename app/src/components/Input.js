@@ -3,86 +3,60 @@ import Form from 'react-bootstrap/Form'
 import InputGroup from 'react-bootstrap/InputGroup'
 import Button from 'react-bootstrap/Button'
 import Row from 'react-bootstrap/Row'
+import Checkbox from './Checkbox'
 
 
 
-class Input extends React.Component{
+class Input extends React.Component {
 
-handleAdd = () => {
-    var days = []
-    var i
-    days = document.getElementById('default-checkbox')
-    console.log(days)
+  constructor() {
+    super();
+    this.state = { checkboxChecked: false };
+    this.handleChange = this.handleChange.bind(this);
+    this.handleIsItChecked = this.handleIsItChecked.bind(this);
+    this.handleToggle = this.handleToggle.bind(this);
   }
 
-  render(){
-  return(
-    <div>
- <h1>What prescriptions are you taking currently?</h1>
+  handleAdd = () => {
+    var days = []
+    var i
+  }
+
+  handleChange(evt) {
+    this.setState({ checkboxChecked: evt.target.checked });
+  }
+  
+  handleIsItChecked() {
+    console.log(this.state.checkboxChecked ? 'Yes' : 'No');
+  }
+  
+  handleToggle() {
+    this.setState({ checkboxChecked: !this.state.checkboxChecked });
+  }
+
+  render() {
+    return (
+      <div>
+        <h1>What prescriptions are you taking currently?</h1>
         <InputGroup className="mb-3">
-    <InputGroup.Prepend>
-      <InputGroup.Text id="basic-addon1">Enter the Name of your Prescription</InputGroup.Text>
-    </InputGroup.Prepend>
-    <Form.Control
-      placeholder="Prescription"
-      aria-label="Prescription"
-      aria-describedby="basic-addon1"
-    />
-  </InputGroup>
-  <Form>
-  {['checkbox'].map((type) => (
-    <div key={`default-${type}`} className="mb-3">
-      <Form.Check 
-        type={type}
-        id={`default-${type}`}
-        label={`Monday`}
-      />
-       <Form.Check 
-        type={type}
-        id={`default-${type}`}
-        label={`Tuesday`}
-      />
-      <Form.Check 
-        type={type}
-        id={`default-${type}`}
-        label={`Wednesday`}
-      />
-      <Form.Check 
-        type={type}
-        id={`default-${type}`}
-        label={`Thursday`}
-      />
-      <Form.Check 
-        type={type}
-        id={`default-${type}`}
-        label={`Friday`}
-      />
-      <Form.Check 
-        type={type}
-        id={`default-${type}`}
-        label={`Saturday`}
-      />
-      <Form.Check 
-        type={type}
-        id={`default-${type}`}
-        label={`Sunday`}
-      />
-    </div>
-  ))}
-    {['radio'].map((type) => (
-    <div key={`default-${type}`} className="mb-3">
-      <Form.Check 
-        type={type}
-        id={`default-${type}`}
-        label={`Every Day`}
-      />
-    </div>
-  ))}
-</Form>
-  <Button onClick={this.handleAdd()}>Add</Button>
-  </div>
-  )
-    }
+          <InputGroup.Prepend>
+            <InputGroup.Text id="basic-addon1">Enter the Name of your Prescription</InputGroup.Text>
+          </InputGroup.Prepend>
+          <Form.Control
+            placeholder="Prescription"
+            aria-label="Prescription"
+            aria-describedby="basic-addon1"
+          />
+        </InputGroup>
+        <Form>
+          <Checkbox
+            checked={this.state.checkboxChecked}
+            onChange={this.handleChange} />
+        </Form>
+        <Button onClick={this.handleAdd()}>Add</Button>
+      </div>
+    )
+  }
 }
 
 export default Input
