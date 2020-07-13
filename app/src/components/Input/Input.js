@@ -73,7 +73,7 @@ class Input extends React.Component {
             aria-describedby="basic-addon1"
           />
         </InputGroup>
-          <form onSubmit={this.addToCalendar}>
+          <form onSubmit={this.addToCalendar.bind(this)}>
         {this.createCheckboxes()}
         <Button type='submit'>Add</Button>
         </form>
