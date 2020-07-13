@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import Form from 'react-bootstrap/Form'
 import InputGroup from 'react-bootstrap/InputGroup'
 import Button from 'react-bootstrap/Button'
@@ -44,26 +44,20 @@ class Input extends React.Component {
   createCheckboxes = () => OPTIONS.map(this.createCheckbox);
 
 
-
-  handleChange(evt) {
-    this.setState({ checkboxChecked: evt.target.checked });
-    this.setState({daysChecked:[].push(evt.target.label)})
-    console.log(this.state.daysChecked)
-    
-  }
-
   handleIsItChecked() {
     console.log(this.state.checkboxChecked ? 'Yes' : 'No');
   }
 
-  addToCalendar = formSubmitEvent => {
-    formSubmitEvent.preventDefault();
+
+  addToCalendar(event) {
+    event.preventDefault();
+
     Object.keys(this.state.checkboxes)
-    .filter(checkbox => this.state.checkboxes[checkbox])
-    .forEach(checkbox => {
-      console.log(checkbox, "is selected.");
-    });
-  }
+      .filter(checkbox => this.state.checkboxes[checkbox])
+      .forEach(checkbox => {
+        console.log(checkbox, "is selected.");
+      });
+  };
 
 
   render() {
@@ -79,7 +73,7 @@ class Input extends React.Component {
             aria-describedby="basic-addon1"
           />
         </InputGroup>
-          <form>
+          <form onSubmit={this.addToCalendar}>
         {this.createCheckboxes()}
         <Button type='submit'>Add</Button>
         </form>
