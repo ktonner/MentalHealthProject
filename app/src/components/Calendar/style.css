@@ -7,3 +7,8 @@ th{
 td{
     height: 200px
 }
+
+Table{
+    float:right;
+    margin-top:20px;
+}

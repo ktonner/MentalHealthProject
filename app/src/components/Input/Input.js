@@ -3,7 +3,8 @@ import Form from 'react-bootstrap/Form'
 import InputGroup from 'react-bootstrap/InputGroup'
 import Button from 'react-bootstrap/Button'
 import Row from 'react-bootstrap/Row'
-import Checkbox from './Checkbox'
+import Checkbox from '../Checkbox'
+import css from './style.css'
 
 
 
@@ -11,7 +12,10 @@ class Input extends React.Component {
 
   constructor() {
     super();
-    this.state = { checkboxChecked: false };
+    this.state = {
+      checkboxChecked: false,
+      daysChecked: []
+    };
     this.handleChange = this.handleChange.bind(this);
     this.handleIsItChecked = this.handleIsItChecked.bind(this);
     this.handleToggle = this.handleToggle.bind(this);
@@ -25,14 +29,17 @@ class Input extends React.Component {
           label={option}
           checked={this.state.checkboxChecked}
           onChange={this.handleChange}
-          />
-    )
+        />
+      )
     })
   }
 
 
   handleChange(evt) {
     this.setState({ checkboxChecked: evt.target.checked });
+    this.setState({daysChecked:[].push(evt.target.label)})
+    console.log(this.state.daysChecked)
+    console.log('checked')
   }
 
   handleIsItChecked() {
@@ -45,8 +52,7 @@ class Input extends React.Component {
 
   render() {
     return (
-      <div>
-        <h1>What prescriptions are you taking currently?</h1>
+      <div id='input'>
         <InputGroup className="mb-3">
           <InputGroup.Prepend>
             <InputGroup.Text id="basic-addon1">Enter the Name of your Prescription</InputGroup.Text>
@@ -57,9 +63,14 @@ class Input extends React.Component {
             aria-describedby="basic-addon1"
           />
         </InputGroup>
-        <Form>
-          {this.createCheckboxes}
-        </Form>
+        <Checkbox label='Monday'></Checkbox>
+        <Checkbox label='Tuesday'></Checkbox>
+        <Checkbox label='Wednesday'></Checkbox>
+        <Checkbox label='Thursday'></Checkbox>
+        <Checkbox label='Friday'></Checkbox>
+        <Checkbox label='Saturday'></Checkbox>
+        <Checkbox label='Sunday'></Checkbox>
+        <Checkbox label='Every Day'></Checkbox>
         <Button>Add</Button>
       </div>
     )

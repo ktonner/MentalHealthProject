@@ -3,7 +3,7 @@ import Form from 'react-bootstrap/Form'
 import InputGroup from 'react-bootstrap/InputGroup'
 
 class Checkbox extends React.Component {
-    render() {
+    render(props) {
         return (
             <div>
                 {['checkbox'].map((type) => (
@@ -11,7 +11,7 @@ class Checkbox extends React.Component {
                         <Form.Check
                             type={type}
                             id={`default-${type}`}
-                            label={`default ${type}`}
+                            label={this.props.label}
                         />
                     </div>
                 ))}
