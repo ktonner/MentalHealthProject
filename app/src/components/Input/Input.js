@@ -6,49 +6,65 @@ import Row from 'react-bootstrap/Row'
 import Checkbox from '../Checkbox'
 import css from './style.css'
 
-
+//these are all the checkbox options and will not change
+const OPTIONS = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday", "Every day"]
 
 class Input extends React.Component {
 
-  constructor() {
-    super();
-    this.state = {
-      checkboxChecked: false,
-      daysChecked: []
-    };
-    this.handleChange = this.handleChange.bind(this);
-    this.handleIsItChecked = this.handleIsItChecked.bind(this);
-    this.handleToggle = this.handleToggle.bind(this);
-  }
+  state = {
+    checkboxes: OPTIONS.reduce(
+      (options, option) => ({
+        ...options,
+        [option]: false
+      }),
+      {}
+    )
+  };
 
-  createCheckboxes() {
-    const options = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
-    options.map((option) => {
-      return (
-        <Checkbox
-          label={option}
-          checked={this.state.checkboxChecked}
-          onChange={this.handleChange}
-        />
-      )
-    })
-  }
+  handleCheckboxChange = changeEvent => {
+    const { name } = changeEvent.target;
+
+    this.setState(prevState => ({
+      checkboxes: {
+        ...prevState.checkboxes,
+        [name]: !prevState.checkboxes[name]
+      }
+    }));
+  };
+
+  createCheckbox = option => (
+    <Checkbox
+      label={option}
+      isSelected={this.state.checkboxes[option]}
+      onCheckboxChange={this.handleCheckboxChange}
+      key={option}
+    />
+  );
+
+  createCheckboxes = () => OPTIONS.map(this.createCheckbox);
+
 
 
   handleChange(evt) {
     this.setState({ checkboxChecked: evt.target.checked });
     this.setState({daysChecked:[].push(evt.target.label)})
     console.log(this.state.daysChecked)
-    console.log('checked')
+    
   }
 
   handleIsItChecked() {
     console.log(this.state.checkboxChecked ? 'Yes' : 'No');
   }
 
-  handleToggle() {
-    this.setState({ checkboxChecked: !this.state.checkboxChecked });
+  addToCalendar = formSubmitEvent => {
+    formSubmitEvent.preventDefault();
+    Object.keys(this.state.checkboxes)
+    .filter(checkbox => this.state.checkboxes[checkbox])
+    .forEach(checkbox => {
+      console.log(checkbox, "is selected.");
+    });
   }
+
 
   render() {
     return (
@@ -63,16 +79,11 @@ class Input extends React.Component {
             aria-describedby="basic-addon1"
           />
         </InputGroup>
-        <Checkbox label='Monday'></Checkbox>
-        <Checkbox label='Tuesday'></Checkbox>
-        <Checkbox label='Wednesday'></Checkbox>
-        <Checkbox label='Thursday'></Checkbox>
-        <Checkbox label='Friday'></Checkbox>
-        <Checkbox label='Saturday'></Checkbox>
-        <Checkbox label='Sunday'></Checkbox>
-        <Checkbox label='Every Day'></Checkbox>
-        <Button>Add</Button>
-      </div>
+          <form>
+        {this.createCheckboxes()}
+        <Button type='submit'>Add</Button>
+        </form>
+        </div>
     )
   }
 }
