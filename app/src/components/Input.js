@@ -11,6 +11,7 @@ class Input extends React.Component{
 handleAdd = () => {
     var days = []
     var i
+    console.log("click")
     days = document.getElementById('default-checkbox')
     console.log(days)
   }
@@ -29,6 +30,8 @@ handleAdd = () => {
       aria-describedby="basic-addon1"
     />
   </InputGroup>
+
+  {/* checkboxes below */}
   <Form>
   {['checkbox'].map((type) => (
     <div key={`default-${type}`} className="mb-3">
@@ -79,7 +82,7 @@ handleAdd = () => {
     </div>
   ))}
 </Form>
-  <Button onClick={this.handleAdd()}>Add</Button>
+  <Button onClick={()=>this.handleAdd()}>Add</Button>
   </div>
   )
     }
