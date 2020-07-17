@@ -39,9 +39,10 @@ class Input extends React.Component {
   createCheckbox = option => (
     <Checkbox
       label={option}
+      type="checkbox"
       isSelected={this.state.checkboxes[option]}
       onChange={this.handleCheckboxChange}
-      checked = {false}
+      defaultChecked = {false}
       key={option}
     />
   );
