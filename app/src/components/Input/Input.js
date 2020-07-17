@@ -22,6 +22,10 @@ class Input extends React.Component {
     prescriptions:[]
   };
 
+  myFunc = event =>{
+    console.log("click")
+  }
+
   handleCheckboxChange = event => {
     console.log('check')
     console.log(event.target)
@@ -42,7 +46,7 @@ class Input extends React.Component {
       type="checkbox"
       isSelected={this.state.checkboxes[option]}
       onChange={this.handleCheckboxChange}
-      defaultChecked = {false}
+      onClick={this.myFunc}
       key={option}
     />
   );

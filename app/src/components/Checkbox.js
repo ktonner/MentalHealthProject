@@ -12,6 +12,8 @@ class Checkbox extends React.Component {
                             type={type}
                             id={`default-${type}`}
                             label={this.props.label}
+                            onChange={this.props.onChange}
+                            onClick={this.props.onClick}
                         />
                     </div>
                 ))}
