@@ -18,11 +18,13 @@ class Input extends React.Component {
         [option]: false
       }),
       {}
-    )
+    ),
+    prescriptions:[]
   };
 
   handleCheckboxChange = changeEvent => {
-    const { name } = changeEvent.target;
+    console.log('check')
+    const { name } = changeEvent.target.checked;
 
     this.setState(prevState => ({
       checkboxes: {
@@ -36,7 +38,7 @@ class Input extends React.Component {
     <Checkbox
       label={option}
       isSelected={this.state.checkboxes[option]}
-      onCheckboxChange={this.handleCheckboxChange}
+      onChange={this.handleCheckboxChange}
       key={option}
     />
   );
@@ -44,13 +46,10 @@ class Input extends React.Component {
   createCheckboxes = () => OPTIONS.map(this.createCheckbox);
 
 
-  handleIsItChecked() {
-    console.log(this.state.checkboxChecked ? 'Yes' : 'No');
-  }
-
-
   addToCalendar(event) {
     event.preventDefault();
+    this.setState(prevState=>({prescriptions: [..."i"]}))
+    console.log(this.state)
 
     Object.keys(this.state.checkboxes)
       .filter(checkbox => this.state.checkboxes[checkbox])
@@ -73,11 +72,11 @@ class Input extends React.Component {
             aria-describedby="basic-addon1"
           />
         </InputGroup>
-          <form onSubmit={this.addToCalendar.bind(this)}>
-        {this.createCheckboxes()}
-        <Button type='submit'>Add</Button>
+        <form onSubmit={this.addToCalendar.bind(this)}>
+          {this.createCheckboxes()}
+          <Button type='submit'>Add</Button>
         </form>
-        </div>
+      </div>
     )
   }
 }
