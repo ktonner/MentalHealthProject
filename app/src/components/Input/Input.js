@@ -11,6 +11,12 @@ const OPTIONS = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturd
 
 class Input extends React.Component {
 
+  constructor(props) {
+    super(props);
+
+    this.inputRef = React.createRef();
+  }
+
   state = {
     checkboxes: OPTIONS.reduce(
       (options, option) => ({
@@ -19,7 +25,7 @@ class Input extends React.Component {
       }),
       {}
     ),
-    prescriptions:[]
+    prescription:[]
   };
 
   handleCheckboxChange = event => {
@@ -51,28 +57,22 @@ class Input extends React.Component {
   createCheckboxes = () => OPTIONS.map(this.createCheckbox);
 
   addPrescription = (value) => {
-
     this.setState((state, value) => {
-      const prescriptions = this.state.prescriptions.push(value);
- 
       return {
-        prescriptions: prescriptions
+        prescription: [...value]
       };
     });
+    console.log(this.state)
   };
 
   addToCalendar(event) {
     event.preventDefault();
     // this.setState(prevState=>({prescriptions: [..."i"]}))
-    console.log(this.state.checkboxes.Monday)
     console.log(event.target)
     //this selects the div with all the checkboxes
     let form = event.target
     console.log(form.children)
-    let i=0
-    for(i=0; i<form.length;i++){
-    console.log(form.children[i].innerText)
-    }
+    console.log(form.children[0].value)
 
     Object.keys(this.state.checkboxes)
       .filter(checkbox => this.state.checkboxes[checkbox])
@@ -86,17 +86,19 @@ class Input extends React.Component {
   render() {
     return (
       <div id='input'>
+        <form onSubmit={this.addToCalendar.bind(this)}>
         <InputGroup className="mb-3">
           <InputGroup.Prepend>
             <InputGroup.Text id="basic-addon1">Enter the Name of your Prescription</InputGroup.Text>
           </InputGroup.Prepend>
           <Form.Control
             placeholder="Prescription"
+            ref={this.inputRef} 
+            onSubmit={(e)=>this.addPrescription(e.target.value)}
             aria-label="Prescription"
             aria-describedby="basic-addon1"
           />
         </InputGroup>
-        <form onSubmit={this.addToCalendar.bind(this)}>
           {this.createCheckboxes()}
           <Button type='submit'>Add</Button>
         </form>
