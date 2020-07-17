@@ -22,9 +22,11 @@ class Input extends React.Component {
     prescriptions:[]
   };
 
-  handleCheckboxChange = changeEvent => {
+  handleCheckboxChange = event => {
     console.log('check')
-    const { name } = changeEvent.target.checked;
+    console.log(event.target)
+    const { name } = event.target.checked;
+    console.log({ name})
 
     this.setState(prevState => ({
       checkboxes: {
@@ -39,23 +41,43 @@ class Input extends React.Component {
       label={option}
       isSelected={this.state.checkboxes[option]}
       onChange={this.handleCheckboxChange}
+      checked = {false}
       key={option}
     />
   );
 
   createCheckboxes = () => OPTIONS.map(this.createCheckbox);
 
+  addPrescription = (value) => {
+
+    this.setState((state, value) => {
+      const prescriptions = this.state.prescriptions.push(value);
+ 
+      return {
+        prescriptions: prescriptions
+      };
+    });
+  };
 
   addToCalendar(event) {
     event.preventDefault();
-    this.setState(prevState=>({prescriptions: [..."i"]}))
-    console.log(this.state)
+    // this.setState(prevState=>({prescriptions: [..."i"]}))
+    console.log(this.state.checkboxes.Monday)
+    console.log(event.target)
+    //this selects the div with all the checkboxes
+    let form = event.target
+    console.log(form.children)
+    let i=0
+    for(i=0; i<form.length;i++){
+    console.log(form.children[i].innerText)
+    }
 
     Object.keys(this.state.checkboxes)
       .filter(checkbox => this.state.checkboxes[checkbox])
       .forEach(checkbox => {
         console.log(checkbox, "is selected.");
       });
+    console.log(this.state)
   };
 
 
