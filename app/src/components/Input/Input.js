@@ -11,12 +11,6 @@ const OPTIONS = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturd
 
 class Input extends React.Component {
 
-  constructor(props) {
-    super(props);
-
-    this.inputRef = React.createRef();
-  }
-
   state = {
     checkboxes: OPTIONS.reduce(
       (options, option) => ({
@@ -25,7 +19,7 @@ class Input extends React.Component {
       }),
       {}
     ),
-    prescription:[]
+    prescriptions:[]
   };
 
   handleCheckboxChange = event => {
@@ -57,30 +51,32 @@ class Input extends React.Component {
   createCheckboxes = () => OPTIONS.map(this.createCheckbox);
 
   addPrescription = (value) => {
-    this.setState((state, value) => {
-      return {
-        prescription: [...value]
-      };
-    });
+    console.log(this.state)
+    console.log(this.state.prescriptions)
+    this.setState(
+      state => {
+        const newPrescription = state.prescriptions.push(value);
+        const checkboxes = state.checkboxes
+
+      });
     console.log(this.state)
   };
 
   addToCalendar(event) {
     event.preventDefault();
-    // this.setState(prevState=>({prescriptions: [..."i"]}))
-    console.log(event.target)
+    console.log(this.state)
     //this selects the div with all the checkboxes
     let form = event.target
     //selects just the text input component
     let input = form.children[0].children[1]
     console.log(input.value)
+    this.addPrescription(input.value)
 
-    Object.keys(this.state.checkboxes)
-      .filter(checkbox => this.state.checkboxes[checkbox])
-      .forEach(checkbox => {
-        console.log(checkbox, "is selected.");
-      });
-    console.log(this.state)
+    // Object.keys(this.state.checkboxes)
+    //   .filter(checkbox => this.state.checkboxes[checkbox])
+    //   .forEach(checkbox => {
+    //     console.log(checkbox, "is selected.");
+    //   });
   };
 
 
@@ -94,8 +90,6 @@ class Input extends React.Component {
           </InputGroup.Prepend>
           <Form.Control
             placeholder="Prescription"
-            ref={this.inputRef} 
-            onSubmit={(e)=>this.addPrescription(e.target.value)}
             aria-label="Prescription"
             aria-describedby="basic-addon1"
           />
