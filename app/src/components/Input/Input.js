@@ -71,8 +71,9 @@ class Input extends React.Component {
     console.log(event.target)
     //this selects the div with all the checkboxes
     let form = event.target
-    console.log(form.children)
-    console.log(form.children[0].value)
+    //selects just the text input component
+    let input = form.children[0].children[1]
+    console.log(input.value)
 
     Object.keys(this.state.checkboxes)
       .filter(checkbox => this.state.checkboxes[checkbox])
