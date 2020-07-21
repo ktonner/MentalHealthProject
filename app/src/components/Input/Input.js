@@ -50,27 +50,26 @@ class Input extends React.Component {
 
   createCheckboxes = () => OPTIONS.map(this.createCheckbox);
 
-  addPrescription = (value) => {
-    console.log(this.state)
-    console.log(this.state.prescriptions)
-    this.setState(
-      state => {
-        const newPrescription = state.prescriptions.push(value);
-        const checkboxes = state.checkboxes
-
-      });
-    console.log(this.state)
-  };
 
   addToCalendar(event) {
     event.preventDefault();
+    console.log("click")
     console.log(this.state)
     //this selects the div with all the checkboxes
     let form = event.target
     //selects just the text input component
     let input = form.children[0].children[1]
+    let prescriptions = this.state.prescriptions
     console.log(input.value)
-    this.addPrescription(input.value)
+    let newP = prescriptions.push(input.value)
+    
+    this.setState(
+      state => {
+        return{
+          prescriptions: newP
+        }
+      });
+      console.log(this.state)
 
     // Object.keys(this.state.checkboxes)
     //   .filter(checkbox => this.state.checkboxes[checkbox])
@@ -83,7 +82,7 @@ class Input extends React.Component {
   render() {
     return (
       <div id='input'>
-        <form onSubmit={this.addToCalendar.bind(this)}>
+        <Form onSubmit={this.addToCalendar.bind(this)}>
         <InputGroup className="mb-3">
           <InputGroup.Prepend>
             <InputGroup.Text id="basic-addon1">Enter the Name of your Prescription</InputGroup.Text>
@@ -96,7 +95,7 @@ class Input extends React.Component {
         </InputGroup>
           {this.createCheckboxes()}
           <Button type='submit'>Add</Button>
-        </form>
+        </Form>
       </div>
     )
   }
