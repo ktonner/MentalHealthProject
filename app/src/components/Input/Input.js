@@ -23,18 +23,19 @@ class Input extends React.Component {
   };
 
   handleCheckboxChange = event => {
-    console.log('check')
-    console.log(event.target)
+    //grabbing the name and the true/false status
     const name = event.target.id
     const status = event.target.checked;
-    console.log(status)
-
+    console.log(status, name )
+    const checkboxes = this.state.checkboxes
+    console.log(Object.keys(checkboxes))
     this.setState(prevState => ({
       checkboxes: {
         ...prevState.checkboxes,
-        name: status
+        [name]: !prevState.checkboxes[name]
       }
-    }));
+    })
+    );
     console.log(this.state)
   };
 
@@ -55,6 +56,7 @@ class Input extends React.Component {
     event.preventDefault();
     //this selects the div with all the checkboxes
     let form = event.target
+    console.log(form)
     //selects just the text input component
     let input = form.children[0].children[1]
     let prescriptions = this.state.prescriptions
@@ -70,12 +72,20 @@ class Input extends React.Component {
           }
         });
       console.log(this.state)
+      //Only getting the days that are true from the state
+      let checkboxes = this.state.checkboxes
+      let keys = Object.keys(checkboxes)
+      let filtered = keys.filter(function(key) {
+        return checkboxes[key]})
+      //stored where the Prescription has a value of the days it is taken
+      localStorage.setItem(input.value, filtered)
     }
-    Object.keys(this.state.checkboxes)
-      .filter(checkbox => this.state.checkboxes[checkbox])
-      .forEach(checkbox => {
-        console.log(checkbox, "is selected.");
-      });
+
+    // Object.keys(this.state.checkboxes)
+    //   .filter(checkbox => this.state.checkboxes[checkbox])
+    //   .forEach(checkbox => {
+    //     console.log(checkbox, "is selected.");
+    //   });
   };
 
 
