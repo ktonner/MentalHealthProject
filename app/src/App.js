@@ -1,5 +1,7 @@
 import React from 'react';
 import './App.css';
+import { DBConfig } from './components/IndexDB/script';
+import { initDB } from 'react-indexed-db';
 import Home from './Pages/Home'
 import Prescriptions from './Pages/Prescriptions'
 import {
@@ -9,6 +11,7 @@ import {
 } from 'react-router-dom';
 import Container from 'react-bootstrap/Container'
 
+initDB(DBConfig);
 
 const App = () => (
   <div>

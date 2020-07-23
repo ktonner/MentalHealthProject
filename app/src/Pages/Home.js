@@ -6,7 +6,7 @@ function Home(){
       <header className="App-header">
         {/* <img src={logo} className="App-logo" alt="logo" /> */}
         <p>
-          Mental Health Tracker
+          Brain Fort
         </p>
         <a
           className="App-link"
