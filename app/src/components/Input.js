@@ -9,6 +9,7 @@ import Row from 'react-bootstrap/Row'
 class Input extends React.Component{
 
 handleAdd = () => {
+    console.log("click")
     var days = []
     var i
     days = document.getElementById('default-checkbox')
@@ -79,7 +80,7 @@ handleAdd = () => {
     </div>
   ))}
 </Form>
-  <Button onClick={this.handleAdd()}>Add</Button>
+  <Button onClick={()=>this.handleAdd()}>Add</Button>
   </div>
   )
     }
