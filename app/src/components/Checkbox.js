@@ -10,8 +10,9 @@ class Checkbox extends React.Component {
                     <div key={`default-${type}`} className="mb-3">
                         <Form.Check
                             type={type}
-                            id={`default-${type}`}
+                            id={this.props.label}
                             label={this.props.label}
+                            onChange={this.props.onChange}
                         />
                     </div>
                 ))}
